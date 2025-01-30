@@ -7,6 +7,7 @@ module.exports = {
   ],
   theme: {
     screens: {
+      mobile: "370px",
       xs: "480px",
       sm: "640px",
       md: "768px",
@@ -18,6 +19,7 @@ module.exports = {
       container: {
         center: true,
         padding: {
+          mobile: "1rem",
           xs: "1.088rem",
           sm: "2.288rem",
           md: "2.288rem",
@@ -29,26 +31,25 @@ module.exports = {
       fontFamily: {
         Vazir: "Vazir",
       },
+
       colors: {
-        colors: {
-          background: "#ffffff",
-          customGreen: {
-            100: "#D8FFE1",
-            200: "#28A745",
-            300: "#10411B",
-          },
-          customGray: {
-            100: "#282828",
-          },
-          customBlue: {
-            100: "#009ECA",
-          },
-          customYellow: {
-            100: "#D1B900",
-          },
-          customRed: {
-            100: "#D40000",
-          },
+        background: "#ffffff",
+        customGreen: {
+          100: "#D8FFE1",
+          200: "#28A745",
+          300: "#10411B",
+        },
+        customGray: {
+          100: "#282828",
+        },
+        customBlue: {
+          100: "#009ECA",
+        },
+        customYellow: {
+          100: "#D1B900",
+        },
+        customRed: {
+          100: "#D40000",
         },
       },
     },

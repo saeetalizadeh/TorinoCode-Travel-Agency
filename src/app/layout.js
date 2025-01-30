@@ -1,3 +1,4 @@
+import Header from "@/components/layout/Header";
 import "./globals.css";
 import localFont from "next/font/local";
 
@@ -8,7 +9,10 @@ const Vazir = localFont({
 export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${Vazir.className}`}>{children}</body>
+      <body className={`${Vazir.className}`}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
