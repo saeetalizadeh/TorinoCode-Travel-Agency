@@ -2,68 +2,55 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import ModalContainer from "../partials/container/ModalContainer";
+import AuthForm from "../authForm";
 
 function Header() {
   const [active, setActive] = useState(false);
   return (
-    <div className="grid grid-cols-4 container justify-between h-[74px]">
-      {active && (
+    <header className="shadow-md  bg-background">
+      <div className="grid grid-cols-4 container  justify-between h-[74px]">
+        {active && (
+          <div
+            className="absolute right-0 top-0 z-50 w-full h-full bg-black/30 md:hidden"
+            onClick={(e) => {
+              if (e.target.tagName === "DIV") {
+                setActive(false);
+              }
+            }}
+          >
+            <NavBar />
+          </div>
+        )}
         <div
-          className="absolute right-0 top-0 z-50 w-full h-full bg-black/30 md:hidden"
-          onClick={(e) => {
-            if (e.target.tagName === "DIV") {
-              setActive(false);
-            }
-          }}
+          className="col-span-4 md:hidden flex h-full items-center "
+          onClick={() => setActive(true)}
         >
-          <NavBar />
-        </div>
-      )}
-      <div
-        className="col-span-4 md:hidden flex h-full items-center "
-        onClick={() => setActive(true)}
-      >
-        <Image
-          src="/images/hmbgr.svg"
-          alt="لوگو تورینو"
-          width={20}
-          height={16}
-        />
-      </div>
-
-      <div className="col-span-4 hidden md:flex xl:gap-[84px] gap-[40px] items-center">
-        <div>
           <Image
-            src="/images/TorinoLogo.svg"
+            src="/images/hmbgr.svg"
             alt="لوگو تورینو"
-            width={146}
-            height={44}
+            width={20}
+            height={16}
           />
         </div>
-        <div className="w-full">
-          <NavBar />
+
+        <div className="col-span-4 hidden md:flex xl:gap-[84px] gap-[40px] items-center">
+          <div>
+            <Image
+              src="/images/TorinoLogo.svg"
+              alt="لوگو تورینو"
+              width={146}
+              height={44}
+            />
+          </div>
+          <div className="w-full">
+            <NavBar />
+          </div>
+        </div>
+        <div className="col-span-1 col-end-6 h-full flex items-center">
+          <AuthForm />
         </div>
       </div>
-      <div className="col-span-1 col-end-6 h-full flex items-center">
-        <button className=" border border-customGreen-200 rounded-lg xl:px-4 xl:py-2 px-2 py-1 ">
-          <div className="md:flex gap-2 hidden">
-            <div className="relative w-5 h-5 xl:w-6 xl:h-6">
-              <Image src="/images/Adamak.svg" fill={true} alt="آدمک" />
-            </div>
-            <span className="text-customGreen-200 xl:text-[18px] border-l pl-2 border-customGreen-200 text-sm">
-              ورود
-            </span>
-            <span className="text-customGreen-200 xl:text-[18px] text-sm">
-              ثبت نام
-            </span>
-          </div>
-          <div className="md:hidden">
-            <Image src="/images/login.svg" width={24} height={24} alt="آدمک" />
-          </div>
-        </button>
-      </div>
-    </div>
+    </header>
   );
 }
 

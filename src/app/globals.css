@@ -1,3 +1,57 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .no-spin::-webkit-inner-spin-button,
+  .no-spin::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .no-spin {
+    -moz-appearance: textfield;
+  }
+  .ltr {
+    direction: ltr;
+  }
+  @keyframes hidden-profile {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      display: none;
+      opacity: 0;
+    }
+  }
+
+  @keyframes block-profile {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+      display: block;
+    }
+  }
+  .profile-down-active {
+    animation: alternate;
+    animation-name: block-profile;
+    animation-duration: 0.3s;
+  }
+
+  .profile-down-hidden {
+    animation: alternate;
+    display: none;
+    animation-name: hidden-profile;
+    animation-duration: 0.3s;
+  }
+}
+@layer base {
+  @font-face {
+    font-family: "VazirRegular";
+    src: url("./fonts/Vazir-Regular-FD.woff2") format("woff2");
+
+    font-display: wrap;
+  }
+}

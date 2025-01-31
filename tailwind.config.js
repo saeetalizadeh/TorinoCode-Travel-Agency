@@ -30,6 +30,7 @@ module.exports = {
       },
       fontFamily: {
         Vazir: "Vazir",
+        VazirRegular: "VazirRegular",
       },
 
       colors: {
