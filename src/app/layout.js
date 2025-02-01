@@ -4,8 +4,8 @@ import localFont from "next/font/local";
 import TanstackQueryProvider from "@/components/partials/provider/TanstackQueryProvider";
 import { Toaster } from "react-hot-toast";
 import AuthProvider from "@/components/partials/provider/AuthProvider";
-import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import Footer from "@/components/layout/Footer";
 
 const Vazir = localFont({
   src: "./fonts/Vazir-Medium-FD.woff2",
@@ -14,15 +14,16 @@ const Vazir = localFont({
 export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${Vazir.className}`}>
+      <body className={`${Vazir.className} min-h-screen`}>
         <TanstackQueryProvider>
           <AuthProvider>
             <Header />
-            {children}
+            <main className="min-h-main"> {children}</main>
+            <Footer />
           </AuthProvider>
-          <ReactQueryDevtools/>
+          <ReactQueryDevtools />
         </TanstackQueryProvider>
-    
+
         <Toaster />
       </body>
     </html>

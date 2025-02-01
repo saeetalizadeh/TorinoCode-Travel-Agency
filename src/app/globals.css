@@ -8,7 +8,12 @@
     -webkit-appearance: none;
     margin: 0;
   }
-
+  .not-found-page-h {
+    height: calc(100vh - 74px);
+  }
+  .min-h-main {
+    min-height: calc(100vh - 300px);
+  }
   .no-spin {
     -moz-appearance: textfield;
   }

@@ -9,12 +9,12 @@ import { useGetUserData } from "@/core/services/queries";
 import Image from "next/image";
 import { setCookie } from "@/core/utils/cookie";
 import { useAuthInfo } from "../partials/provider/AuthProvider";
-import {  useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 
 function AuthForm() {
   const { isLogin, setIsLogin, isOpen, setIsOpen } = useAuthInfo();
 
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   const [mobile, setMobile] = useState("");
   const [dropDown, setDropDown] = useState(false);
   const queryClient = useQueryClient();
