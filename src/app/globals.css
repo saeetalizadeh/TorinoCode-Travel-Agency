@@ -59,4 +59,8 @@
 
     font-display: wrap;
   }
+  @font-face {
+    font-family: "Vazir";
+    src: url("./fonts/Vazir-Medium.woff2") format("woff2");
+  }
 }
