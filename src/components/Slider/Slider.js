@@ -22,8 +22,8 @@ const images = [
 export default function Slider() {
   return (
     <div className="container">
-      <div className="mdA:flex-row mdA:items-center mdA:gap-x-5 flex h-fit w-full flex-col xl:gap-x-40">
-        <div className="pb-16">
+      <div className="flex h-fit w-full flex-col mdA:flex-row mdA:items-center mdA:gap-x-5 xl:gap-x-40">
+        <div>
           <div className="mb-6 flex gap-x-2">
             <div className="relative">
               <img

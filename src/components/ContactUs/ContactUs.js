@@ -2,14 +2,14 @@ import Image from "next/image";
 
 function ContactUs() {
   return (
-    <div className="container mb-[90px]">
+    <div className="container my-[90px]">
       <div className="flex flex-col rounded-xl border sm:flex-row">
-        <div className="relative h-[128px] w-full rounded-t-[10px] bg-customGreen-200 p-3 xs:p-6 sm:h-[160px] xl:h-[251px] sm:rounded-b-[10px] lg:p-10">
+        <div className="relative h-[128px] w-full rounded-t-[10px] bg-customGreen-200 p-3 xs:p-6 sm:h-[160px] sm:rounded-b-[10px] lg:p-10 xl:h-[251px]">
           <div className="mb-2.5 flex">
             <span className="text-[22px] text-background lg:text-[32px] xl:text-[48px]">
               خرید تلفنی از
             </span>
-            <span className="mr-1 lg:mr-2 lg:text-[32px] text-[22px] text-customGreen-300 xl:text-[48px]">
+            <span className="mr-1 text-[22px] text-customGreen-300 lg:mr-2 lg:text-[32px] xl:text-[48px]">
               تورینو
             </span>
           </div>

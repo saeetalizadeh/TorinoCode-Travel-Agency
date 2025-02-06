@@ -8,4 +8,10 @@ const useGetUserData = () => {
 
   return useQuery({ queryFn, queryKey });
 };
-export { useGetUserData };
+const useGetAllTours = (page) => {
+  const queryFn = () => api.get(`tour?page=${page}&limit=10`);
+  const queryKey = ["all-tours", page];
+
+  return useQuery({ queryFn, queryKey });
+};
+export { useGetUserData, useGetAllTours };
