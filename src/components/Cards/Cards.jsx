@@ -1,11 +1,21 @@
 import { serverFetch } from "@/core/services/http";
+import { detailsFormater } from "@/core/utils/helper";
 import Image from "next/image";
+import Link from "next/link";
 
 async function Cards({ query }) {
   const data = await serverFetch(`tour`, query, "no-store");
+  console.log(data);
+  if (data.length < 1) {
+    return (
+      <div className="col-span-12 mx-auto text-[20px] text-customRed-100/70 md:text-[30px]">
+        <h1>توری با این مشخصات یافت نشد!</h1>
+      </div>
+    );
+  }
   if (!data) {
     return (
-      <div className="col-span-12 mx-auto text-[30px] text-customRed-100/70">
+      <div className="col-span-12 mx-auto text-[20px] text-customRed-100/70 md:text-[30px]">
         <h1>خطایی رخ داد !</h1>
       </div>
     );
@@ -23,46 +33,55 @@ async function Cards({ query }) {
 export default Cards;
 
 export function Card({ tour }) {
-  const date = new Date(tour.startDate);
-  const dateBack = new Date(tour.endDate) - date;
-  const tourExpired = date - new Date();
-  const travelTime = Math.round(dateBack / 24 / 60 / 60 / 1000);
-
-  const fleetVehicle = {
-    Bus: "اتوبوس",
-    Van: "ون",
-    SUV: "SUV",
-    Airplane: "هواپیما",
-  };
-
-  const monthNomToFa = new Intl.DateTimeFormat("fa").format(date).split("/");
-
-  const month = {
-    "\u06F1": "فروردین",
-    "\u06F2": "اردیبهشت",
-    "\u06F3": "خرداد",
-    "\u06F4": "تیر",
-    "\u06F5": "مرداد",
-    "\u06F6": "شهریور",
-    "\u06F7": "مهر",
-    "\u06F8": "آبان",
-    "\u06F9": "آذر",
-    "\u06F1\u06F0": "دی",
-    "\u06F1\u06F1": "بهمن",
-    "\u06F1\u06F2": "اسفند",
-  };
-
-  const result = [
-    month[monthNomToFa[1]],
+  const {
+    tourExpired,
+    month,
     travelTime,
-    fleetVehicle[tour.fleetVehicle],
-    tour.options[1],
-  ];
+    fleetVehicle,
+    tourOptions,
+    priceChanger,
+  } = detailsFormater(tour);
 
-  const priceChanger = (number) => {
-    let Price = new Intl.NumberFormat();
-    return Price.format(number);
-  };
+  // const date = new Date(tour.startDate);
+  // const dateBack = new Date(tour.endDate) - date;
+  // const tourExpired = date - new Date();
+  // const travelTime = Math.round(dateBack / 24 / 60 / 60 / 1000);
+
+  // const fleetVehicle = {
+  //   Bus: "اتوبوس",
+  //   Van: "ون",
+  //   SUV: "SUV",
+  //   Airplane: "هواپیما",
+  // };
+
+  // const monthNomToFa = new Intl.DateTimeFormat("fa").format(date).split("/");
+
+  // const month = {
+  //   "\u06F1": "فروردین",
+  //   "\u06F2": "اردیبهشت",
+  //   "\u06F3": "خرداد",
+  //   "\u06F4": "تیر",
+  //   "\u06F5": "مرداد",
+  //   "\u06F6": "شهریور",
+  //   "\u06F7": "مهر",
+  //   "\u06F8": "آبان",
+  //   "\u06F9": "آذر",
+  //   "\u06F1\u06F0": "دی",
+  //   "\u06F1\u06F1": "بهمن",
+  //   "\u06F1\u06F2": "اسفند",
+  // };
+
+  // const result = [
+  //   month[monthNomToFa[1]],
+  //   travelTime,
+  //   fleetVehicle[tour.fleetVehicle],
+  //   tour.options[1],
+  // ];
+
+  // const priceChanger = (number) => {
+  //   let Price = new Intl.NumberFormat();
+  //   return Price.format(number);
+  // };
 
   return (
     <div
@@ -81,19 +100,21 @@ export function Card({ tour }) {
                 <span className="text-customRed-100">تور منقضی شده است</span>
               ) : (
                 <>
-                  <span>{result[0]} ماه , </span>
-                  <span>{result[1]} روزه , </span>
-                  <span>{result[2]} , </span>
-                  <span>{result[3]} </span>
+                  <span>{month} ماه , </span>
+                  <span>{travelTime} روزه , </span>
+                  <span>{fleetVehicle} , </span>
+                  <span>{tourOptions} </span>
                 </>
               )}
             </span>
           </div>
         </div>
         <div className="flex justify-between border-t pt-[6px]">
-          <button className="h-[29px] w-[99px] rounded-[4px] bg-customGreen-200 text-background">
-            رزرو
-          </button>
+          <Link href={`/tour-detail/${tour.id}`}>
+            <button className="h-[29px] w-[99px] rounded-[4px] bg-customGreen-200 text-background">
+              رزرو
+            </button>
+          </Link>
           <div className="flex gap-x-1">
             <span className="font-VazirRegular text-[16px] text-customBlue-100">
               {priceChanger(tour.price)}
