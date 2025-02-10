@@ -3,11 +3,13 @@ import { serverFetch } from "@/core/services/http";
 
 async function TourDetail(props) {
   const tourId = props.params.id;
-  // console.log(tourId);
   const data = await serverFetch(`tour/${tourId}`, null, "no-store");
-  // console.log(data);
 
-  return <Tour data={data} />;
+  return (
+    <div className="py-9 sm:bg-[#F3F3F3]">
+      <Tour data={data} />
+    </div>
+  );
 }
 
 export default TourDetail;

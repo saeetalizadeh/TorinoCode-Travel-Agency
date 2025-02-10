@@ -23,6 +23,7 @@ export function detailsFormater(tour) {
   const dateBack = new Date(tour.endDate) - date;
   const tourExpired = date - new Date();
   const travelTime = Math.round(dateBack / 24 / 60 / 60 / 1000);
+  const endDate = new Date(tour.endDate);
 
   const fleetVehicle = {
     Bus: "اتوبوس",
@@ -30,8 +31,17 @@ export function detailsFormater(tour) {
     SUV: "SUV",
     Airplane: "هواپیما",
   };
-
-  const monthNomToFa = new Intl.DateTimeFormat("fa").format(date).split("/");
+  const city = {
+    1: "تهران",
+    2: "سنندج",
+    3: "مادرید",
+    4: "اصفحان",
+    5: "سلمانیه",
+    6: "هولیر",
+    7: "مازندران",
+    8: "آفرود سنتر",
+    9: "ایتالیا",
+  };
 
   const month = {
     "\u06F1": "فروردین",
@@ -51,15 +61,28 @@ export function detailsFormater(tour) {
     let Price = new Intl.NumberFormat();
     return Price.format(number);
   };
+  function monthNumToFa(date) {
+    const newDate = new Intl.DateTimeFormat("fa").format(date).split("/");
+
+    return [`${newDate[2]} ${month[newDate[1]]} ${newDate[0]}`];
+  }
 
   return {
     tourExpired,
     dateBack,
-    month: month[monthNomToFa[1]],
+    month: month[monthNumToFa[1]],
+    monthtofa: monthNumToFa(date),
+    dateBackTofa: monthNumToFa(endDate),
     travelTime: travelTime,
     fleetVehicle: fleetVehicle[tour.fleetVehicle],
     tourOptions: tour.options[1],
     priceChanger: priceChanger,
+    origin: city[tour.origin.id],
   };
 }
+export const priceChanger = (number) => {
+  let Price = new Intl.NumberFormat();
+  return Price.format(number);
+};
+
 export { flattenObject, DateToIso };

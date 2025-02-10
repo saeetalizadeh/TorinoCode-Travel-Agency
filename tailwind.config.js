@@ -14,7 +14,6 @@ module.exports = {
       mdA: "800px",
       lg: "1024px",
       xl: "1280px",
-      "2xl": "1536px",
     },
     extend: {
       container: {
@@ -26,7 +25,6 @@ module.exports = {
           md: "2.288rem",
           lg: "3.988rem",
           xl: "4.088rem",
-          "2xl": "7.875rem",
         },
       },
       fontFamily: {
@@ -57,6 +55,24 @@ module.exports = {
     },
   },
   plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        ".scrollbar-webkit": {
+          "&::-webkit-scrollbar": {
+            width: "3px",
+            height: "3px",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            background: "#b6d8be",
+            borderRadius: "10px",
+          },
+          "&::-webkit-scrollbar-thumb:hover": {
+            background: "#95b09c",
+          },
+        },
+      };
+      addUtilities(newUtilities, ["responsive", "hover"]);
+    },
     function ({ addVariant }) {
       addVariant("child", "&>*");
       addVariant("child-hover", "&>*:hover");
