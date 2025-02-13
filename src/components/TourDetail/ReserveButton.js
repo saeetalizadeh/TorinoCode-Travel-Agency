@@ -1,9 +1,46 @@
+"use client";
+import { usePutTourBasket } from "@/core/services/mutations";
 import { priceChanger } from "@/core/utils/helper";
+import toast from "react-hot-toast";
+import { useAuthInfo } from "../partials/provider/AuthProvider";
+import { useRouter } from "next/navigation";
 
-function ReserveButton({ dataPrice }) {
+function ReserveButton({ dataPrice, id, tourExpired, availableSeats }) {
+  const router = useRouter();
+  console.log(availableSeats);
+  const { isLogin, setIsOpen } = useAuthInfo();
+  console.log(setIsOpen);
+
+  console.log(id);
+  const { mutate } = usePutTourBasket();
+  const reservationHandler = () => {
+    if (!isLogin) {
+      toast.error("لطفا ابتدا وارد حساب کاربری خود شوید!");
+      setIsOpen(true);
+      return;
+    } else if (tourExpired < 0) {
+      toast.error("تور منقضی شده است!");
+      return;
+    } else if (availableSeats == 0) {
+      toast.error("ظرفیت تور به اتمام رسیده است!");
+      return;
+    }
+    try {
+      mutate(
+        { id },
+        { onSuccess: () => toast.success("تور با موفقیت رزور شد!") },
+      );
+    } catch (error) {
+      toast.error("مشکلی پیش امده است \n لطفا دقایقی دیگر امتحان کنید!");
+    }
+    router.push("/checkout");
+  };
   return (
     <>
-      <button className="h-[40px] w-[154px] rounded-[10px] bg-customGreen-200 text-xl text-background sm:h-[35px] sm:w-[100px] sm:text-base lg:h-[40px] lg:w-[154px] lg:text-xl">
+      <button
+        onClick={reservationHandler}
+        className="h-[40px] w-[154px] rounded-[10px] bg-customGreen-200 text-xl text-background sm:h-[35px] sm:w-[100px] sm:text-base lg:h-[40px] lg:w-[154px] lg:text-xl"
+      >
         رزرو و خرید
       </button>
       <div>

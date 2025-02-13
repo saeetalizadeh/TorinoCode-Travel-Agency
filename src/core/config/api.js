@@ -9,10 +9,13 @@ function setCookie(name, value, days = 30) {
       value,
       maxAge: days * 24 * 60 * 60,
     });
+  } else {
+    const maxAge = days * 24 * 60 * 60;
+    document.cookie = `${name}=${value}; max-age=${maxAge}; path=/`;
   }
 }
 
-function getCookie(name) {
+export function getCookie(name) {
   if (typeof window === "undefined") {
     const cookieStore = cookies();
     const token = cookieStore.get(name)?.value;
@@ -42,7 +45,7 @@ api.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 api.interceptors.response.use(
@@ -61,9 +64,9 @@ api.interceptors.response.use(
         if (res?.response?.status === 200) {
           setCookie("accessToken", res?.response?.data.accessToken, 30);
 
-          originalRequest.headers[
-            "Authorization"
-          ] = `Bearer ${res?.response?.data.accessToken}`;
+          originalRequest.headers["Authorization"] = `Bearer ${
+            res?.response?.data.accessToken
+          }`;
           return api(originalRequest);
         } else {
           setCookie("accessToken", "", 0);
@@ -74,7 +77,7 @@ api.interceptors.response.use(
       }
     }
     return Promise.reject(error.response?.data);
-  }
+  },
 );
 
 export default api;
@@ -82,13 +85,15 @@ export default api;
 export const getNewTokens = async () => {
   const refreshToken = getCookie("refreshToken");
   if (!refreshToken) return;
+
   try {
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}auth/refresh-token`,
       {
-        refreshToken,
-      }
+        refreshToken: refreshToken,
+      },
     );
+
     return { response };
   } catch (error) {
     return { error };

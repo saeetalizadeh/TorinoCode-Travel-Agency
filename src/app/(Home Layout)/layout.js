@@ -41,7 +41,7 @@ export default function MainLayout({ children }) {
                 <Image fill={true} src={item.src} alt={item.alt} />
               </div>
               <div>
-                <h4 className="mb-1 font-VazirMedium text-[14px] font-medium md:text-[20px] xl:text-[26px]">
+                <h4 className="font-VazirMedium mb-1 text-[14px] font-medium md:text-[20px] xl:text-[26px]">
                   {item.title}
                 </h4>
                 <p className="font-VazirRegular text-xs font-light leading-[18px] tracking-wide lg:text-[16px] lg:leading-[25px]">

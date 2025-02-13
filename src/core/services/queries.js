@@ -23,4 +23,18 @@ const useGetTours = (query) => {
 
   return useQuery({ queryFn, queryKey, enabled: false });
 };
-export { useGetUserData, useGetAllTours, useGetTours };
+
+const useGetToursBasket = () => {
+  // const url = "tour?" + QueryString.stringify(query);
+
+  const queryFn = () => api.get("basket");
+  const queryKey = ["basket"];
+
+  return useQuery({ queryFn, queryKey });
+};
+// const useGetTourBasket = () => {
+//   const mutationFn = () => api.get(`basket`);
+//   const onError = (error) => toast.error(error.message);
+//   return useMutation({ mutationFn, onError });
+// };
+export { useGetUserData, useGetAllTours, useGetTours, useGetToursBasket };

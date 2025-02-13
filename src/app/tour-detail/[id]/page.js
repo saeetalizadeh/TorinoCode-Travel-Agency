@@ -6,7 +6,7 @@ async function TourDetail(props) {
   const data = await serverFetch(`tour/${tourId}`, null, "no-store");
 
   return (
-    <div className="py-9 sm:bg-[#F3F3F3]">
+    <div className="min-h-main py-9 sm:bg-[#F3F3F3]">
       <Tour data={data} />
     </div>
   );

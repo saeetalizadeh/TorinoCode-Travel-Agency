@@ -6,7 +6,7 @@ import Options from "./Options";
 import ReserveButton from "./ReserveButton";
 
 function Tour({ data }) {
-  const { travelTime } = detailsFormater(data);
+  const { travelTime, tourExpired } = detailsFormater(data);
 
   return (
     <div className="container">
@@ -57,7 +57,12 @@ function Tour({ data }) {
               </div>
             </div>
             <div className="my-8 hidden w-full justify-between sm:my-0 sm:flex sm:flex-row-reverse">
-              <ReserveButton dataPrice={data.price} />
+              <ReserveButton
+                dataPrice={data.price}
+                id={data.id}
+                tourExpired={tourExpired}
+                availableSeats={data.availableSeats}
+              />
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import api from "../config/api";
 import { setCookie } from "../utils/cookie";
+import toast from "react-hot-toast";
 
 const useSendOtp = () => {
   const mutationFn = (data) => api.post("auth/send-otp", data);
@@ -22,4 +23,16 @@ const useCheckOtp = () => {
 
   return useMutation({ mutationFn, onSuccess });
 };
-export { useSendOtp, useCheckOtp };
+const usePutTourBasket = () => {
+  const mutationFn = (data) => api.put(`basket/${data.id}`);
+  const onError = (error) => toast.error(error.message);
+  return useMutation({ mutationFn, onError });
+};
+
+const usePostOrder = () => {
+  const mutationFn = (data) => api.post(`order`, data.form);
+  const onError = (error) => toast.error(error.message);
+  return useMutation({ mutationFn, onError });
+};
+
+export { useSendOtp, useCheckOtp, usePutTourBasket, usePostOrder };
