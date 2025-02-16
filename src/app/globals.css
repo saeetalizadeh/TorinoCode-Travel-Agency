@@ -20,6 +20,9 @@
   .ltr {
     direction: ltr;
   }
+  .rtl {
+    direction: rtl;
+  }
   @keyframes hidden-profile {
     0% {
       opacity: 1;

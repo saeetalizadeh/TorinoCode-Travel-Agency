@@ -4,8 +4,8 @@ import { fleetVehicles, priceChanger } from "@/core/utils/helper";
 import Image from "next/image";
 
 function Tours() {
-  const { data } = useGetUserTours();
-  console.log(data);
+  const { data, isError, isLoading } = useGetUserTours();
+  // console.log(data);
   const city = {
     1: "تهران",
     2: "سنندج",
@@ -52,7 +52,7 @@ function Tours() {
                 </p>
               </div>
             </div>
-            <div className="border-b-2 pb-2 lg:flex">
+            <div className="border-b pb-2 lg:flex">
               <div className="flex items-center lg:w-1/2 lg:gap-x-5">
                 <h3 className="w-1/2 text-sm lg:w-auto lg:text-sm">
                   از {city[item.origin.id]} به {city[item.destination.id]}
@@ -81,14 +81,14 @@ function Tours() {
               </div>
             </div>
           </div>
-          <div className="A:justify-between A:divide-x A:divide-x-reverse my-1 mt-4 flex items-center lg:justify-start">
-            <div className="A:flex-row A:w-auto A:border-none flex w-1/2 flex-col items-center gap-x-4 border-l lg:pl-5">
+          <div className="my-1 mt-4 flex items-center A:justify-between A:divide-x A:divide-x-reverse lg:justify-start">
+            <div className="flex w-1/2 flex-col items-center gap-x-4 border-l A:w-auto A:flex-row A:border-none lg:pl-5">
               <span className="text-xs text-customGray-100/70 lg:text-sm">
                 شماره تور
               </span>
               <span className="text-xs">102095404</span>
             </div>
-            <div className="A:flex-row A:w-auto A:gap-x-2 A:px-2 flex w-1/2 flex-col items-center xs:pr-12 sm:pr-24 lg:pr-5">
+            <div className="flex w-1/2 flex-col items-center A:w-auto A:flex-row A:gap-x-2 A:px-2 xs:pr-12 sm:pr-24 lg:pr-5">
               <span className="text-xs text-customGray-100/70 lg:text-sm">
                 مبلغ پرداخت شده
               </span>

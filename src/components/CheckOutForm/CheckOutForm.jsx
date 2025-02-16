@@ -39,7 +39,7 @@ function CheckOutForm() {
         },
       },
     );
-    router.replace("profile/tours");
+    router.replace("user-profile/tours");
   };
 
   return (
@@ -120,7 +120,7 @@ function CheckOutForm() {
                   render={({ field: { onChange } }) => (
                     <DatePicker
                       inputClass=" w-full h-[44px] p-2 rounded-md border"
-                      inputAttributes={{ placeholder: "تاریخ" }}
+                      inputAttributes={{ placeholder: " تاریخ تولد" }}
                       round="x2"
                       accentColor="#28A745"
                       onChange={(e) => {

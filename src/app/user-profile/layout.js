@@ -1,14 +1,19 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
-function ProfileLayout({ children }) {
+function ProfileLayout(props) {
+  const path = usePathname();
+  console.log(path);
+
   return (
     <div className="container">
-      <div className="mt-5 gap-8 md:grid md:grid-cols-12">
-        <div className="flex justify-around border-b md:col-span-3 md:flex-col md:rounded-[10px] md:border">
+      <div className="mt-5 max-h-fit gap-8 md:grid md:grid-cols-12">
+        <div className="flex max-h-fit justify-around border-b md:col-span-3 md:flex-col md:rounded-[10px] md:border">
           <Link
-            href="/"
-            className="flex gap-x-2 border-b border-customGreen-200 pb-2 text-xs md:p-2"
+            href="/user-profile"
+            className={`flex w-1/3 items-center justify-center gap-x-2 rounded-t-[10px] pb-2 text-xs md:w-full md:justify-start md:p-2 ${path === "/user-profile" ? "border-b border-customGreen-200 text-customGreen-200 md:border-b-0 md:bg-customGreen-100" : ""}`}
           >
             <div className="relative mt-0.5 h-4 w-4 md:h-5 md:w-5">
               <svg
@@ -29,8 +34,8 @@ function ProfileLayout({ children }) {
             <h1>پروفایل</h1>
           </Link>
           <Link
-            href="/"
-            className="flex gap-x-2 border-b border-red-500 pb-2 text-xs md:p-2"
+            href="/user-profile/tours"
+            className={`flex w-1/3 items-center justify-center gap-x-2 pb-2 text-xs md:w-full md:justify-start md:border-b md:border-t md:p-2 ${path === "/user-profile/transactions" && "border-b-customGreen-200 md:border-b"} ${path === "/user-profile" && "border-t-customGreen-200"} ${path === "/user-profile/tours" && "border-b border-customGreen-200 text-customGreen-200 md:bg-customGreen-100"}`}
           >
             <div className="relative mt-0.5 h-4 w-4 md:h-5 md:w-5">
               <svg
@@ -63,8 +68,8 @@ function ProfileLayout({ children }) {
             <h1>تور های من</h1>
           </Link>
           <Link
-            href="/"
-            className="flex gap-x-2 border-b border-red-700 pb-2 text-xs md:p-2"
+            href="/user-profile/transactions"
+            className={`flex w-1/3 items-center justify-center gap-x-2 pb-2 text-xs md:w-full md:justify-start md:rounded-b-[10px] md:p-2 ${path === "/user-profile/transactions" && "border-b border-customGreen-200 text-customGreen-200 md:border-b-0 md:bg-customGreen-100"}`}
           >
             <div className="relative mt-0.5 h-4 w-4 md:h-5 md:w-5">
               <svg
@@ -108,7 +113,7 @@ function ProfileLayout({ children }) {
             <h1>تراکنش ها</h1>
           </Link>
         </div>
-        <div className="md:col-span-9">{children}</div>
+        <div className="md:col-span-9 md:mt-0">{props.children}</div>
       </div>
     </div>
   );
