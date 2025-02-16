@@ -80,7 +80,7 @@ function CheckOutForm() {
                   {...register("nationalCode")}
                   placeholder="کد ملی"
                   type="number"
-                  className="h-[44px] w-full rounded-md border p-2"
+                  className="no-spin h-[44px] w-full rounded-md border p-2"
                 />
                 <div className="min-h-9 w-full">
                   {!!errors?.nationalCode && (

@@ -25,16 +25,21 @@ const useGetTours = (query) => {
 };
 
 const useGetToursBasket = () => {
-  // const url = "tour?" + QueryString.stringify(query);
-
   const queryFn = () => api.get("basket");
   const queryKey = ["basket"];
 
   return useQuery({ queryFn, queryKey });
 };
-// const useGetTourBasket = () => {
-//   const mutationFn = () => api.get(`basket`);
-//   const onError = (error) => toast.error(error.message);
-//   return useMutation({ mutationFn, onError });
-// };
-export { useGetUserData, useGetAllTours, useGetTours, useGetToursBasket };
+const useGetUserTours = () => {
+  const queryFn = () => api.get("user/tours");
+  const queryKey = ["user-tours"];
+
+  return useQuery({ queryFn, queryKey });
+};
+export {
+  useGetUserData,
+  useGetAllTours,
+  useGetTours,
+  useGetToursBasket,
+  useGetUserTours,
+};

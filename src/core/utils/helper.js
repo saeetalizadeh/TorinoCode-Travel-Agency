@@ -80,6 +80,28 @@ export function detailsFormater(tour) {
     origin: city[tour.origin.id],
   };
 }
+export const fleetVehicles = {
+  Bus: { name: "اتوبوس", iconSrc: "/images/bus.svg" },
+  Van: { name: "ون", iconSrc: "/images/van-passenger.svg" },
+  SUV: { name: "SUV", iconSrc: "/images/car-suv-vehicle.svg" },
+  Airplane: { name: "هواپیما", iconSrc: "/images/airplane.svg" },
+  Ship: { name: "کشتی", iconSrc: "/images/ship.svg" },
+};
+export function monthNumToFarsi(date = "2022-10-02") {
+  const newDate = new Intl.DateTimeFormat("fa").format(date).split("/");
+  const weekDays = [
+    "یکشنبه",
+    "دوشنبه",
+    "سه‌شنبه",
+    "چهارشنبه",
+    "پنج‌شنبه",
+    "جمعه",
+    "شنبه",
+  ];
+  const day = date.getDay();
+
+  return [`${newDate[2]} ${month[newDate[1]]} ${newDate[0]}, ${weekDays[day]}`];
+}
 export const priceChanger = (number) => {
   let Price = new Intl.NumberFormat();
   return Price.format(number);
