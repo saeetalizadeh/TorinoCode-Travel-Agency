@@ -34,5 +34,22 @@ const usePostOrder = () => {
   const onError = (error) => toast.error(error.message);
   return useMutation({ mutationFn, onError });
 };
+const usePutUserData = () => {
+  const queryClient = useQueryClient();
 
-export { useSendOtp, useCheckOtp, usePutTourBasket, usePostOrder };
+  const mutationFn = (data) => api.put(`user/profile`, data);
+  const onError = (error) => toast.error(error.message);
+  const onSuccess = () => {
+    toast.success("ایمیل با موفقیت اضافه شد!");
+    queryClient.invalidateQueries({ queryKey: ["user-data"] });
+  };
+  return useMutation({ mutationFn, onError, onSuccess });
+};
+
+export {
+  useSendOtp,
+  useCheckOtp,
+  usePutTourBasket,
+  usePostOrder,
+  usePutUserData,
+};

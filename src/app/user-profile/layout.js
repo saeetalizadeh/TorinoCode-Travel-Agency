@@ -9,7 +9,7 @@ function ProfileLayout(props) {
 
   return (
     <div className="container">
-      <div className="mt-5 max-h-fit gap-8 md:grid md:grid-cols-12">
+      <div className="mt-5 max-h-fit gap-5 md:grid md:grid-cols-12">
         <div className="flex max-h-fit justify-around border-b md:col-span-3 md:flex-col md:rounded-[10px] md:border">
           <Link
             href="/user-profile"

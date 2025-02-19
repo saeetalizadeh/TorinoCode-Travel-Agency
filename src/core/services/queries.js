@@ -42,6 +42,7 @@ const useGetUserTransactions = () => {
 
   return useQuery({ queryFn, queryKey });
 };
+
 export {
   useGetUserData,
   useGetAllTours,

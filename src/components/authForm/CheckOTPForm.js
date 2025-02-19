@@ -32,7 +32,7 @@ function CheckOTPForm({ mobile, setStep, setIsOpen }) {
         onError: (error) => {
           console.log(error);
         },
-      }
+      },
     );
   };
 
@@ -64,14 +64,14 @@ function CheckOTPForm({ mobile, setStep, setIsOpen }) {
         onError: (error) => {
           console.log(error);
         },
-      }
+      },
     );
   };
 
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className="relative flex flex-col w-[358px] md:w-[561px] md:items-center bg-white rounded-[20px] shadow-[0_4px_4px_-0px_rgba(0,0,0,0.25)] p-6"
+      className="relative flex w-[358px] flex-col rounded-[20px] bg-white p-6 shadow-[0_4px_4px_-0px_rgba(0,0,0,0.25)] md:w-[561px] md:items-center"
     >
       <div className="absolute left-3 top-3 p-2">
         <Image
@@ -82,14 +82,14 @@ function CheckOTPForm({ mobile, setStep, setIsOpen }) {
           alt="x"
         />
       </div>
-      <h4 className="text-[22px] font-bold text-center xl:text-[28px] mt-[36px] text-customGray-100">
+      <h4 className="mt-[36px] text-center text-[22px] font-bold text-customGray-100 xl:text-[28px]">
         کد تایید را وارد کنید
       </h4>
       <form
-        className="flex flex-col justify-end items-center gap-4 flex-1 mt-11"
+        className="mt-11 flex flex-1 flex-col items-center justify-end gap-4"
         onSubmit={checkOtpHandler}
       >
-        <label className="font-VazirRegular text-black/60 ">
+        <label className="font-VazirRegular text-black/60">
           کد تایید به شماره {mobile} ارسال شد
         </label>
         <div style={{ direction: "ltr" }}>
@@ -110,7 +110,7 @@ function CheckOTPForm({ mobile, setStep, setIsOpen }) {
           <TimerOTP expiryTimestamp={time} sendOtpHandler={sendOtpHandler} />
         </div>
         <button
-          className="bg-customGreen-200 h-11 text-lg text-white md:w-[491px]  rounded-md mt-[25px]"
+          className="mt-[25px] h-11 rounded-md w-full bg-customGreen-200 px-3 text-lg text-white md:w-[491px]"
           type="submit"
         >
           ورود به تورینو

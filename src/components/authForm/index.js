@@ -65,7 +65,7 @@ function AuthForm() {
             </div>
 
             <Link
-              href={"/profile"}
+              href={"/user-profile"}
               className="relative flex h-[35px] items-center gap-x-2 pr-3 hover:bg-customGray-100/10 lg:h-[45px]"
             >
               <div className="relative h-4 w-4 md:h-5 md:w-5">
