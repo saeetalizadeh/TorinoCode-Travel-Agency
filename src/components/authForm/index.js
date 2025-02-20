@@ -10,6 +10,7 @@ import Image from "next/image";
 import { setCookie } from "@/core/utils/cookie";
 import { useAuthInfo } from "../partials/provider/AuthProvider";
 import { useQueryClient } from "@tanstack/react-query";
+import CloseHandler from "./CloseHandler";
 
 function AuthForm() {
   const { isLogin, setIsLogin, isOpen, setIsOpen } = useAuthInfo();
@@ -49,44 +50,47 @@ function AuthForm() {
           </div>
 
           <div
-            className={`absolute -left-[10%] top-8 w-[167px] divide-y rounded-2xl bg-background shadow-md xs:top-10 xs:w-[200px] md:top-10 lg:-left-[20%] lg:w-[246px] ${
+            className={`absolute -left-[10%] top-8 z-50 w-[167px] divide-y rounded-2xl bg-background shadow-md xs:top-10 xs:w-[200px] md:top-10 lg:-left-[20%] lg:w-[246px] ${
               dropDown ? "profile-down-active" : "profile-down-hidden"
             }`}
           >
-            <div className="flex h-11 items-center gap-x-3 rounded-t-[11px] bg-[#f4f4f4] px-3">
-              <div className="relative h-4 w-4 rounded-full bg-customGray-100/20 p-2 md:p-3">
-                <Image fill={true} src="/images/frame.svg" alt="profile" />
+            <CloseHandler unFocusHandler={() => setDropDown(false)}>
+              <div className="flex h-11 items-center gap-x-3 rounded-t-[11px] bg-[#f4f4f4] px-3">
+                <div className="relative h-4 w-4 rounded-full bg-customGray-100/20 p-2 md:p-3">
+                  <Image fill={true} src="/images/frame.svg" alt="profile" />
+                </div>
+                <span className="w-fit text-[14px] font-medium text-customGreen-300 md:text-[16px] lg:text-[18px]">
+                  {!!data?.data?.fullName
+                    ? `${data.data.fullName} `
+                    : data?.data?.mobile}
+                </span>
               </div>
-              <span className="w-fit text-[14px] font-medium text-customGreen-300 md:text-[16px] lg:text-[18px]">
-                {!!data?.data?.firstName
-                  ? `${data.data.firstName} ${data.data.lastName}`
-                  : data?.data?.mobile}
-              </span>
-            </div>
 
-            <Link
-              href={"/user-profile"}
-              className="relative flex h-[35px] items-center gap-x-2 pr-3 hover:bg-customGray-100/10 lg:h-[45px]"
-            >
-              <div className="relative h-4 w-4 md:h-5 md:w-5">
-                <Image fill={true} src="/images/profile.svg" alt="profile" />
-              </div>
-              <span className="text-[12px] text-customGray-100 lg:text-[14px]">
-                اطلاعات حساب کاربری
-              </span>
-            </Link>
-
-            <div className="flex h-[35px] items-center gap-x-2 rounded-b-[15px] pb-1.5 pr-3 hover:cursor-pointer hover:bg-customGray-100/10 lg:h-[45px]">
-              <div className="relative mt-1 h-4 w-4 md:h-5 md:w-5">
-                <Image fill={true} src="/images/logout.svg" alt="profile" />
-              </div>
-              <span
-                className="text-[12px] text-customRed-100 lg:text-[14px]"
-                onClick={logOutHandler}
+              <Link
+                href={"/user-profile"}
+                onClick={() => setDropDown(false)}
+                className="relative flex h-[35px] items-center gap-x-2 pr-3 hover:bg-customGray-100/10 lg:h-[45px]"
               >
-                خروج از حساب کاربری
-              </span>
-            </div>
+                <div className="relative h-4 w-4 md:h-5 md:w-5">
+                  <Image fill={true} src="/images/profile.svg" alt="profile" />
+                </div>
+                <span className="text-[12px] text-customGray-100 lg:text-[14px]">
+                  اطلاعات حساب کاربری
+                </span>
+              </Link>
+
+              <div className="flex h-[35px] items-center gap-x-2 rounded-b-[15px] pb-1.5 pr-3 hover:cursor-pointer hover:bg-customGray-100/10 lg:h-[45px]">
+                <div className="relative mt-1 h-4 w-4 md:h-5 md:w-5">
+                  <Image fill={true} src="/images/logout.svg" alt="profile" />
+                </div>
+                <span
+                  className="text-[12px] text-customRed-100 lg:text-[14px]"
+                  onClick={logOutHandler}
+                >
+                  خروج از حساب کاربری
+                </span>
+              </div>
+            </CloseHandler>
           </div>
         </div>
       ) : (

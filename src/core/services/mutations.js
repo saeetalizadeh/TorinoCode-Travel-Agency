@@ -43,6 +43,7 @@ const usePutUserData = () => {
     toast.success("ایمیل با موفقیت اضافه شد!");
     queryClient.invalidateQueries({ queryKey: ["user-data"] });
   };
+
   return useMutation({ mutationFn, onError, onSuccess });
 };
 

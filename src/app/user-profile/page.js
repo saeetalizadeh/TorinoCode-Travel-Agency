@@ -12,13 +12,15 @@ function Profile() {
     useState(false);
   const { data } = useGetUserData();
   console.log(data);
-  const { mutate } = usePutUserData();
+  
 
   return (
     <div className="mb-6 mt-6 flex flex-col gap-y-5 font-VazirRegular md:mt-0">
       <div className="flex flex-col gap-y-5 rounded-[10px] border p-4">
         <h1>اطلاعات حساب کاربری</h1>
-        <div className="grid grid-cols-12 gap-y-5 lg:gap-x-8">
+        <div
+          className={`grid grid-cols-12 ${isEditingEmail && "items-center"} gap-y-5 lg:gap-x-8`}
+        >
           <div className="col-span-12 flex justify-between child:text-sm lg:col-span-5">
             <span className="text-customGray-100/80">شماره موبایل</span>
             <span className="tracking-wider">{data?.data.mobile}</span>
