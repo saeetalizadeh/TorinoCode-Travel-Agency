@@ -7,11 +7,8 @@ import { useRouter } from "next/navigation";
 
 function ReserveButton({ dataPrice, id, tourExpired, availableSeats }) {
   const router = useRouter();
-  console.log(availableSeats);
   const { isLogin, setIsOpen } = useAuthInfo();
-  console.log(setIsOpen);
 
-  console.log(id);
   const { mutate } = usePutTourBasket();
   const reservationHandler = () => {
     if (!isLogin) {

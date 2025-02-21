@@ -56,7 +56,6 @@ function CheckOTPForm({ mobile, setStep, setIsOpen }) {
       { mobile },
       {
         onSuccess: (data) => {
-          console.log(data);
           toast.success(data?.data?.message);
           toast(data?.data?.code);
           setStep(2);
@@ -110,7 +109,7 @@ function CheckOTPForm({ mobile, setStep, setIsOpen }) {
           <TimerOTP expiryTimestamp={time} sendOtpHandler={sendOtpHandler} />
         </div>
         <button
-          className="mt-[25px] h-11 rounded-md w-full bg-customGreen-200 px-3 text-lg text-white md:w-[491px]"
+          className="mt-[25px] h-11 w-full rounded-md bg-customGreen-200 px-3 text-lg text-white md:w-[491px]"
           type="submit"
         >
           ورود به تورینو

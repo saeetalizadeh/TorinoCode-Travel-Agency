@@ -5,7 +5,6 @@ import React from "react";
 
 function ProfileLayout(props) {
   const path = usePathname();
-  console.log(path);
 
   return (
     <div className="container">

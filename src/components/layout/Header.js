@@ -60,7 +60,6 @@ export default Header;
 
 function NavBar() {
   const url = usePathname();
-  console.log(url);
 
   return (
     <ul className="flex h-full w-[209px] flex-col justify-start gap-x-7 gap-y-[22px] rounded-l-xl bg-background pr-3 pt-8 text-sm child:text-customGray-100 child-hover:text-customGreen-200 md:w-full md:flex-row md:pr-0 md:pt-0 xl:gap-x-12 xl:text-[16px]">

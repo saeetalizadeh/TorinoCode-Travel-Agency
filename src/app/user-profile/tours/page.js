@@ -1,11 +1,14 @@
 "use client";
 import { useGetUserTours } from "@/core/services/queries";
-import { fleetVehicles, priceChanger } from "@/core/utils/helper";
+import {
+  fleetVehicles,
+  monthNumToFarsi,
+  priceChanger,
+} from "@/core/utils/helper";
 import Image from "next/image";
 
 function Tours() {
-  const { data, isError, isLoading } = useGetUserTours();
-  // console.log(data);
+  const { data } = useGetUserTours();
   const city = {
     1: "تهران",
     2: "سنندج",
@@ -17,20 +20,29 @@ function Tours() {
     8: "آفرود سنتر",
     9: "ایتالیا",
   };
-  const date = new Date(data?.data.startDate);
-  const dateBack = new Date(data?.data.endDate) - date;
-  const tourExpired = date - new Date();
-  const travelTime = Math.round(dateBack / 24 / 60 / 60 / 1000);
-  const endDate = new Date(data?.data.endDate);
+
   return (
     <div className="flex flex-col gap-y-5 rounded-[10px] md:border md:p-5">
       {data?.data.map((item) => (
         <div key={Math.random()} className="relative rounded-[8px] border p-4">
           <div className="flex flex-col gap-y-3">
             <div className="flex items-center gap-x-4 xs:gap-x-0">
-              <span className="absolute left-2 top-2 rounded-full bg-customGreen-100 px-2 py-1 text-[8px] text-customGreen-200 xs:left-5 xs:top-5">
-                به اتمام رسیده
-              </span>
+              {new Date(item.startDate) < new Date() &&
+                new Date(item.endDate) > new Date() && (
+                  <span className="absolute left-4 top-4 rounded-full bg-customGreen-200/20 px-2 py-1 font-VazirRegular text-[10px] text-customGreen-200">
+                    در حال برگزاری
+                  </span>
+                )}
+              {new Date(item.endDate) < new Date() && (
+                <span className="absolute left-4 top-4 rounded-full bg-customRed-100/20 px-2 py-1 font-VazirRegular text-[10px] text-customRed-100">
+                  به اتمام رسیده
+                </span>
+              )}
+              {new Date(item.startDate) > new Date() && (
+                <span className="absolute left-4 top-4 rounded-full bg-customYellow-100/20 px-2 py-1 font-VazirRegular text-[10px] text-customYellow-100">
+                  در پیش رو
+                </span>
+              )}
               <div className="flex items-center gap-x-2 xs:w-1/2">
                 <Image
                   src="/images/sun-fog.svg"
@@ -62,7 +74,7 @@ function Tours() {
                     .
                   </span>
                   <p className="text-xs text-customGray-100/70 lg:text-sm">
-                    دوشنبه 15 شهریور 1402
+                    {monthNumToFarsi(new Date(item.startDate))}
                   </p>
                 </div>
               </div>
@@ -75,7 +87,7 @@ function Tours() {
                     .
                   </span>
                   <p className="text-xs text-customGray-100/70 lg:text-sm">
-                    جمعه 19 شهریور 1402
+                    {monthNumToFarsi(new Date(item.endDate))}
                   </p>
                 </div>
               </div>

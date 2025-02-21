@@ -21,29 +21,33 @@ function EmailForm({ userEmail, setIsEditingEmail }) {
   } = useForm({
     resolver: yupResolver(email),
   });
-  console.log(errors);
 
   const submitHandler = (form) => {
-    console.log(form);
 
     if (userEmail?.email !== form.email) {
       mutate(
         { ...form },
         {
+          onSuccess: () => {
+            toast.success("ایمیل شما با موفقیت ثبت شد!");
+            setIsEditingEmail(false);
+          },
+
           onError: (error) => {
             toast.error(error.message);
           },
         },
       );
+    } else {
+      setIsEditingEmail(false);
     }
-    setIsEditingEmail(false);
   };
   return (
     <form
       onSubmit={handleSubmit(submitHandler)}
       className="col-span-12 flex w-full justify-between lg:col-span-7 xl:col-span-5 xl:col-start-8"
     >
-      <div className={`relative flex w-full justify-end gap-4 `}>
+      <div className={`relative flex w-full justify-end gap-4`}>
         <input
           type="text"
           {...register("email")}

@@ -40,7 +40,7 @@ const usePutUserData = () => {
   const mutationFn = (data) => api.put(`user/profile`, data);
   const onError = (error) => toast.error(error.message);
   const onSuccess = () => {
-    toast.success("ایمیل با موفقیت اضافه شد!");
+    // toast.success("ایمیل با موفقیت اضافه شد!");
     queryClient.invalidateQueries({ queryKey: ["user-data"] });
   };
 

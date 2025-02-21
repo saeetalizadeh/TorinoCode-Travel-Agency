@@ -4,7 +4,6 @@ import { detailsFormater, priceChanger } from "@/core/utils/helper";
 
 function Transactions() {
   const { data } = useGetUserTransactions();
-  console.log(data);
   const timeFormatter = (time) => {
     const formatter = new Intl.DateTimeFormat("fa-IR", {
       timeZone: "Asia/Tehran",
